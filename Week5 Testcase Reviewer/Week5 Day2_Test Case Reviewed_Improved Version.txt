@@ -1,0 +1,155 @@
+
+**Test Case Review Report**
+
+**UPI Test Cases**
+
+1. **TC_UPI_001: Successful UPI Transfer using VPA**
+   - **Issues:** 
+     - The test case does not cover the scenario where the VPA is invalid or does not exist.
+     - The test case does not verify the transaction details in the confirmation message.
+   - **Suggestions for Improvement:**
+     - Add a test case to cover the scenario where the VPA is invalid or does not exist.
+     - Verify the transaction details in the confirmation message.
+   - **Improved Version:**
+     ```markdown
+Test Case ID: TC_UPI_001
+Title: Successful UPI Transfer using VPA
+Description: Verify successful fund transfer using valid UPI ID
+Pre-conditions: User logged in, UPI active, sufficient balance
+Steps:
+  1. Navigate to UPI section
+  2. Enter valid VPA
+  3. Enter amount
+  4. Confirm details
+  5. Authenticate with UPI PIN
+  6. Verify transaction details in confirmation message
+Expected Result: Transaction successful with confirmation message and correct transaction details
+```
+
+2. **TC_UPI_002: Successful UPI Transfer using QR**
+   - **Issues:** 
+     - The test case does not cover the scenario where the QR code is invalid or does not exist.
+     - The test case does not verify the transaction details in the confirmation message.
+   - **Suggestions for Improvement:**
+     - Add a test case to cover the scenario where the QR code is invalid or does not exist.
+     - Verify the transaction details in the confirmation message.
+   - **Improved Version:**
+     ```markdown
+Test Case ID: TC_UPI_002
+Title: Successful UPI Transfer using QR
+Description: Verify transfer via QR code
+Pre-conditions: User logged in, sufficient balance
+Steps:
+  1. Open scan option
+  2. Scan QR code
+  3. Enter amount
+  4. Confirm
+  5. Enter UPI PIN
+  6. Verify transaction details in confirmation message
+Expected Result: Payment successful and confirmation displayed with correct transaction details
+```
+
+3. **TC_UPI_003: Successful UPI Transfer to Saved Beneficiary**
+   - **Issues:** 
+     - The test case does not cover the scenario where the saved beneficiary is invalid or does not exist.
+     - The test case does not verify the transaction details in the confirmation message.
+   - **Suggestions for Improvement:**
+     - Add a test case to cover the scenario where the saved beneficiary is invalid or does not exist.
+     - Verify the transaction details in the confirmation message.
+   - **Improved Version:**
+     ```markdown
+Test Case ID: TC_UPI_003
+Title: Successful UPI Transfer to Saved Beneficiary
+Description: Verify transfer to saved UPI beneficiary
+Pre-conditions: User logged in, beneficiary saved, sufficient balance
+Steps:
+  1. Select saved beneficiary
+  2. Enter amount
+  3. Confirm
+  4. Enter PIN
+  5. Verify transaction details in confirmation message
+Expected Result: Transaction successful with correct transaction details
+```
+
+4. **TC_UPI_004: UPI Transfer with Remarks**
+   - **Issues:** 
+     - The test case does not cover the scenario where the remarks are invalid or too long.
+     - The test case does not verify the remarks in the transaction history.
+   - **Suggestions for Improvement:**
+     - Add a test case to cover the scenario where the remarks are invalid or too long.
+     - Verify the remarks in the transaction history.
+   - **Improved Version:**
+     ```markdown
+Test Case ID: TC_UPI_004
+Title: UPI Transfer with Remarks
+Description: Verify adding remarks during transfer
+Pre-conditions: User logged in
+Steps:
+  1. Enter VPA
+  2. Enter amount
+  3. Add remarks
+  4. Confirm
+  5. Authenticate
+  6. Verify remarks in transaction history
+Expected Result: Transaction successful with remarks saved and correct remarks in transaction history
+```
+
+5. **TC_UPI_005: UPI Transfer with Balance Update**
+   - **Issues:** 
+     - The test case does not cover the scenario where the balance is insufficient.
+     - The test case does not verify the balance update in real-time.
+   - **Suggestions for Improvement:**
+     - Add a test case to cover the scenario where the balance is insufficient.
+     - Verify the balance update in real-time.
+   - **Improved Version:**
+     ```markdown
+Test Case ID: TC_UPI_005
+Title: UPI Transfer with Balance Update
+Description: Verify balance update after transfer
+Pre-conditions: User logged in, sufficient balance
+Steps:
+  1. Perform transfer
+  2. Check account balance in real-time
+  3. Verify balance update
+Expected Result: Balance updated correctly in real-time
+```
+
+6. **TC_UPI_006: UPI Receipt Generation**
+   - **Issues:** 
+     - The test case does not cover the scenario where the receipt is not generated.
+     - The test case does not verify the receipt details.
+   - **Suggestions for Improvement:**
+     - Add a test case to cover the scenario where the receipt is not generated.
+     - Verify the receipt details.
+   - **Improved Version:**
+     ```markdown
+Test Case ID: TC_UPI_006
+Title: UPI Receipt Generation
+Description: Verify receipt generation post transaction
+Pre-conditions: Transaction completed
+Steps:
+  1. Complete transfer
+  2. Download receipt
+  3. Verify receipt details
+Expected Result: Receipt generated with correct transaction details
+```
+
+7. **TC_UPI_007: UPI Transaction History Update**
+   - **Issues:** 
+     - The test case does not cover the scenario where the transaction history is not updated.
+     - The test case does not verify the transaction details in the history.
+   - **Suggestions for Improvement:**
+     - Add a test case to cover the scenario where the transaction history is not updated.
+     - Verify the transaction details in the history.
+   - **Improved Version:**
+     ```markdown
+Test Case ID: TC_UPI_007
+Title: UPI Transaction History Update
+Description: Verify transaction reflects in history
+Pre-conditions: Transaction completed
+Steps:
+  1. Complete transfer
+  2. Navigate to history
+  3. Verify transaction details in history
+Expected Result: Transaction visible in history with correct details
+```
