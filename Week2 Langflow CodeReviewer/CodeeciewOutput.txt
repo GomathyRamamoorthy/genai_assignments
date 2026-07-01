@@ -1,0 +1,125 @@
+**Code Review Summary**
+
+### Parameter Scores
+
+| Parameter | Description | Score (out of 20) |
+| --- | --- | --- |
+| Code Readability | Clear naming conventions and indentation; lacks comments and documentation. | 16 |
+| Code Efficiency | Simple Selenium usage; no major inefficiencies observed. | 18 |
+| Error Handling | No try-catch blocks; potential exceptions not handled. | 6 |
+| Maintainability | Class is minimal but not modularized for future extensions. | 14 |
+| Best Practices & Standards | Lacks input validation, logging, and unit tests; uses deprecated imports. | 12 |
+
+### Overall Score: 66 / 100
+
+### Improvement Areas:
+
+1. **Add try-catch blocks and handle potential exceptions**: Implement try-catch blocks to handle potential exceptions, such as `NoSuchElementException`, `TimeoutException`, and `WebDriverException`.
+2. **Include JavaDoc comments and documentation**: Add JavaDoc comments to explain the purpose of the class, methods, and variables.
+3. **Implement basic unit tests**: Write unit tests to validate the functionality of the class using a testing framework like TestNG or JUnit.
+4. **Use logging instead of print statements**: Use a logging framework like Log4j or Logback to log important events and errors.
+5. **Remove deprecated imports**: Remove deprecated imports and use the latest Selenium APIs.
+
+### Summary:
+The code functions correctly but lacks robustness, documentation, and maintainability. Minor improvements can enhance production readiness.
+
+### Detailed Feedback:
+
+#### Code Readability (16/20)
+
+* The code uses clear and concise naming conventions.
+* The indentation is consistent, and the structure is easy to follow.
+* However, there are no comments or JavaDoc documentation to explain the purpose of the class, methods, and variables.
+
+#### Code Efficiency (18/20)
+
+* The code uses Selenium APIs efficiently.
+* There are no unnecessary loops or redundant logic.
+* However, the code can be optimized by using more efficient locators and reducing the number of `findElement` calls.
+
+#### Error Handling (6/20)
+
+* The code does not handle potential exceptions that may occur during Selenium interactions.
+* There are no try-catch blocks to catch and handle exceptions.
+
+#### Maintainability (14/20)
+
+* The class is minimal and easy to understand.
+* However, it is not modularized for future extensions.
+* The code can be refactored into smaller methods or classes to improve maintainability.
+
+#### Best Practices & Standards (12/20)
+
+* The code uses some best practices, such as using a `WebDriver` instance and maximizing the browser window.
+* However, it lacks input validation, logging, and unit tests.
+* The code uses deprecated imports, which should be removed.
+
+### Refactored Code:
+
+```java
+package org.testleaf.week5.day1;
+
+import java.time.Duration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+/**
+ * LearnNestedFrame class.
+ */
+public class LearnNestedFrame {
+
+    private static final Logger LOGGER = Logger.getLogger(LearnNestedFrame.class.getName());
+
+    /**
+     * Main method.
+     * 
+     * @param args command-line arguments
+     */
+    public static void main(String[] args) {
+        try {
+            // Launch the browser
+            ChromeDriver driver = new ChromeDriver();
+
+            // Load the URL
+            driver.get("https://leafground.com/frame.xhtml");
+
+            // Maximize the browser
+            driver.manage().window().maximize();
+
+            // Add implicit wait
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+            // Switch inside the outer frame
+            WebElement element = driver.findElement(By.xpath("//h5[text()=' Click Me (Inside Nested frame)']/following-sibling::iframe"));
+            driver.switchTo().frame(element);
+
+            // Switch inside the inner frame
+            driver.switchTo().frame(0);
+
+            // Click the button
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("Click")));
+            driver.findElement(By.id("Click")).click();
+
+            // Switch to the main page
+            driver.switchTo().defaultContent();
+
+            // Switch back to the immediate parent frame
+            driver.switchTo().parentFrame();
+
+            // Close the browser
+            driver.quit();
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error occurred: " + e.getMessage());
+        }
+    }
+}
+```
+
+Note that the refactored code includes try-catch blocks, JavaDoc comments, and logging. Additionally, it uses more efficient locators and reduces the number of `findElement` calls. However, it still lacks unit tests and input validation, which should be added to improve the code's maintainability and robustness.
